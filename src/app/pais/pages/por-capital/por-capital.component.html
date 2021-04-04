@@ -1,0 +1,38 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+    <hr>
+<div class="row">
+    <div class="col">
+        <!-- Utilizamos el evento que hemos creado
+            utilizamos tambien a su vez el metodo buscar 
+            dentro de este $event viene el producto
+        -->
+         <!--
+                [valor ] = se utiliza para mandar un valor 
+                valor = se utiliza para mandar el valor como string
+            -->
+        <app-pais-input (onEnter)="buscarCapital($event)"
+           placeholder = "Buscar Capital..."
+           
+        
+        ></app-pais-input>
+    </div>
+</div>
+<hr>
+</div><h2>Por Capital</h2>
+
+
+
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontro nada con el texto  {{termino}}
+</div>
+
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col" >
+
+       <app-pais-table [paises]="paises"></app-pais-table>
+
+
+    </div>
+
+</div>

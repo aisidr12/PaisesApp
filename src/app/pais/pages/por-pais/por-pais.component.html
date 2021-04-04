@@ -1,0 +1,41 @@
+<h2>Por Pais</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <!-- Utilizamos el evento que hemos creado
+            utilizamos tambien a su vez el metodo buscar 
+            dentro de este $event viene el producto
+        -->
+      <app-pais-input (onEnter)="buscar($event)"
+                    (onDebounce)="sugerencias($event)"
+                    placeholder = "Buscar Pais..."></app-pais-input>
+    </div>
+</div>
+
+<ul *ngIf="mostrarSugerencias" 
+ class="list-group">
+    <li *ngFor="let pais of paisesSugeridos" class= "list-group-item list-group-item-action">
+        <a [routerLink] ="['/pais', pais.alpha2Code]">
+            {{pais.name}}
+        </a>      
+    </li>
+    <li class= "list-group-item list-group-item-action" (click)="buscarSugerido(termino)">
+        <a class="nav-link">
+            Buscar "{{termino }}"
+        </a>      
+    </li>
+</ul>
+
+<hr>
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontro nada con el texto  {{termino}}
+</div>
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col" >
+
+       <app-pais-table [paises]="paises"></app-pais-table>
+
+
+    </div>
+
+</div>
